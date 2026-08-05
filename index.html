@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลการปฏิบัติงานตามข้อตกลง (PA) - นายภควัต สองเมือง</title>
+    
+    <!-- ฟอนต์ Google Fonts (Prompt) -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ไอคอน FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- อนิเมชั่นเลื่อนหน้า (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* โทนสีแบบ Professional (น้ำเงิน-ทอง) */
+            --primary: #1A365D;    /* น้ำเงินกรมท่าเข้ม */
+            --secondary: #2B6CB0;  /* น้ำเงินสว่าง */
+            --accent: #B7791F;     /* สีทอง */
+            --accent-light: #F6E05E;
+            --bg-color: #F7FAFC;   /* สีพื้นหลังขาวอมเทา */
+            --text-dark: #2D3748;
+            --text-gray: #4A5568;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* กล่องข้อมูลแบบ Professional Card */
+        .pro-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary);
+            padding: 40px;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pro-card:hover {
+            box-shadow: 0 15px 35px rgba(26, 54, 93, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 70px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+        }
+
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--accent-light); }
+        h2 { font-size: 1.4rem; font-weight: 400; opacity: 0.9; }
+        h3 { font-size: 1.1rem; margin-top: 15px; font-weight: 300; color: #E2E8F0; }
+
+        .container {
+            max-width: 1100px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section 1.1 Profile */
+        .profile-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: transform 0.4s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+        }
+
+        .profile-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .profile-title {
+            color: var(--primary);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .profile-info p {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-gray);
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Section 1.2 Classroom Type */
+        .classroom-type {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            background: var(--white);
+            color: var(--primary);
+            border-radius: 12px;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--accent);
+        }
+
+        .classroom-type i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        /* Section 1.3 Workload (แบ่ง 2 ภาคเรียน) */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .section-header .line {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+
+        .semester-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .semester-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .semester-card:hover {
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.1);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .semester-title {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .work-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #CBD5E0;
+        }
+
+        .work-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .work-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.05rem;
+            flex: 1;
+        }
+
+        .work-hours {
+            color: #975A16;
+            background: #FEFCBF;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            white-space: nowrap;
+            border: 1px solid #F6E05E;
+        }
+
+        .subject-list {
+            margin-top: 10px;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            list-style-type: disc;
+        }
+
+        .subject-list li {
+            margin-bottom: 6px;
+        }
+
+        /* Section 1.3.2 Icons Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            border-radius: 10px;
+            background: var(--white);
+            border: 1px solid #E2E8F0;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.2);
+        }
+
+        .menu-icon {
+            width: 60px;
+            height: 60px;
+            background: #EDF2F7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 20px;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover .menu-icon {
+            background: rgba(255,255,255,0.2);
+            color: var(--accent-light);
+        }
+
+        .menu-text h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Section 2 Challenge */
+        .challenge-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2A4365 100%);
+            color: var(--white);
+            text-align: center;
+            border-top: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .challenge-section::before {
+            content: "\f0eb";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            top: -20px;
+            right: -20px;
+            transform: rotate(-15deg);
+        }
+
+        .challenge-section h2 {
+            font-size: 2rem;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .btn-premium {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            color: var(--primary);
+            background: var(--accent-light);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-premium:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header data-aos="fade-down" data-aos-duration="1000">
+        <h1>ผลการปฏิบัติงานตามข้อตกลงในการพัฒนางาน (PA)</h1>
+        <h2>สำหรับข้าราชการครูและบุคลากรทางการศึกษา ตำแหน่งครู วิทยฐานะครูชำนาญการ</h2>
+        <h3>ประจำปีงบประมาณ พ.ศ. 2569<br>(1 ตุลาคม พ.ศ. 2568 - 30 กันยายน พ.ศ. 2569)</h3>
+    </header>
+
+    <div class="container">
+        
+        <!-- 1.1 ข้อมูลผู้จัดทำ -->
+        <div class="pro-card profile-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="profile-img-container">
+                <!-- ใช้ Thumbnail API ของ Google Drive เพื่อบังคับแสดงรูป -->
+                <img src="https://drive.google.com/thumbnail?id=1GAIVAa0pxZToSXQJKCkG_seQgiTHxkP3&sz=w600" 
+                     alt="รูปโปรไฟล์ นายภควัต สองเมือง" 
+                     class="profile-img"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/220x220/1A365D/FFFFFF?text=Profile+Image';">
+            </div>
+            <div class="profile-info">
+                <div class="profile-title">ส่วนที่ 1 : ข้อมูลผู้จัดทำข้อตกลง</div>
+                <p>ชื่อ-สกุล : <span class="highlight">นายภควัต สองเมือง</span></p>
+                <p>ตำแหน่ง : <span class="highlight">ครู</span> &nbsp;&nbsp;|&nbsp;&nbsp; วิทยฐานะ : <span class="highlight">ชำนาญการ</span></p>
+                <p>สถานศึกษา : <span class="highlight">โรงเรียนกุมภวาปี</span></p>
+                <p>สังกัด : <span class="highlight">สำนักงานเขตพื้นที่การศึกษามัธยมศึกษาอุดรธานี</span></p>
+                <p>รับเงินเดือนในอันดับ : <span class="highlight">คศ.2</span> &nbsp;&nbsp;|&nbsp;&nbsp; อัตราเงินเดือน : <span class="highlight">29,210 บาท</span></p>
+            </div>
+        </div>
+
+        <!-- 1.2 ประเภทห้องเรียน -->
+        <div class="classroom-type" data-aos="fade-up">
+            <i class="fas fa-chalkboard-user"></i> 
+            <span><strong>ประเภทห้องเรียนที่จัดการเรียนรู้ :</strong> ห้องเรียนวิชาสามัญหรือวิชาพื้นฐาน</span>
+        </div>
+
+        <!-- 1.3 ส่วนที่ 1 -->
+        <div class="pro-card" data-aos="fade-up">
+            <div class="section-header">
+                <h2>ข้อตกลงในการพัฒนางานตามมาตรฐานตำแหน่ง</h2>
+                <div class="line"></div>
+            </div>
+            
+            <h3 style="color: var(--primary); font-weight: 600; margin-bottom: 15px;">
+                <i class="fas fa-tasks"></i> 1.3.1 ภาระงาน (เป็นไปตามที่ ก.ค.ศ. กำหนด)
+            </h3>
+            
+            <div class="semester-grid">
+                
+                <!-- ภาคเรียนที่ 1 -->
+                <div class="semester-card">
+                    <div class="semester-title">ภาคเรียนที่ 1</div>
+                    
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-book-open"></i> ชั่วโมงสอนตามตารางสอน</div>
+                            <div class="work-hours">16 ชม./สัปดาห์</div>
+                        </div>
+                        <ul class="subject-list">
+                            <li>รายวิชา ว33246 ชีววิทยา ม.6 (7.2 ชั่วโมง)</li>
+                            <li>รายวิชา ว31248 ชีววิทยาเข้มข้น ม.4 (4.8 ชั่วโมง)</li>
+                            <li>รายวิชา IS1 ม.4 (2.4 ชั่วโมง)</li>
+                            <li>รายวิชา IS3 ม.6 (0.8 ชั่วโมง)</li>
+                            <li>กิจกรรมชุมนุม (0.8 ชั่วโมง)</li>
+                        </ul>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-hand-holding-heart"></i> งานส่งเสริมและสนับสนุนการจัดการเรียนรู้</div>
+                            <div class="work-hours">9 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-school-flag"></i> งานพัฒนาคุณภาพการศึกษาของสถานศึกษา</div>
+                            <div class="work-hours">6 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-compass"></i> งานตอบสนองนโยบายและจุดเน้น</div>
+                            <div class="work-hours">4 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ภาคเรียนที่ 2 -->
+                <div class="semester-card">
+                    <div class="semester-title">ภาคเรียนที่ 2</div>
+                    
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-book-open"></i> ชั่วโมงสอนตามตารางสอน</div>
+                            <div class="work-hours">15.2 ชม./สัปดาห์</div>
+                        </div>
+                        <ul class="subject-list">
+                            <li>รายวิชา ว33245 ชีววิทยา ม.6 (9.6 ชั่วโมง)</li>
+                            <li>รายวิชา ว31247 ชีววิทยาเข้มข้น ม.4 (4.8 ชั่วโมง)</li>
+                            <li>กิจกรรมชุมนุม (0.8 ชั่วโมง)</li>
+                        </ul>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-hand-holding-heart"></i> งานส่งเสริมและสนับสนุนการจัดการเรียนรู้</div>
+                            <div class="work-hours">9 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-school-flag"></i> งานพัฒนาคุณภาพการศึกษาของสถานศึกษา</div>
+                            <div class="work-hours">6 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item">
+                        <div class="work-header">
+                            <div class="work-title"><i class="fas fa-compass"></i> งานตอบสนองนโยบายและจุดเน้น</div>
+                            <div class="work-hours">4 ชม./สัปดาห์</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 style="color: var(--primary); font-weight: 600; margin-top: 40px; border-top: 1px solid #edf2f7; padding-top: 30px;">
+                <i class="fas fa-list-check"></i> 1.3.2 งานที่จะปฏิบัติตามมาตรฐานตำแหน่งครู
+            </h3>
+            <p style="color: var(--text-gray); margin-top: 5px;">คลิกที่เมนูแต่ละด้านเพื่อดูรายละเอียดการปฏิบัติงาน</p>
+            
+            <div class="menu-grid">
+                <a href="#learning-management" class="menu-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="menu-icon"><i class="fas fa-laptop-file"></i></div>
+                    <div class="menu-text">
+                        <h4>ด้านการจัดการเรียนรู้</h4>
+                    </div>
+                </a>
+                <a href="#support" class="menu-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="menu-icon"><i class="fas fa-users-gear"></i></div>
+                    <div class="menu-text">
+                        <h4>ด้านการส่งเสริมและสนับสนุนฯ</h4>
+                    </div>
+                </a>
+                <a href="#self-dev" class="menu-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="menu-text">
+                        <h4>ด้านการพัฒนาตนเองและวิชาชีพ</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 1.4 ส่วนที่ 2 ประเด็นท้าทาย -->
+        <div class="pro-card challenge-section" data-aos="fade-up">
+            <h2>ส่วนที่ 2 : ประเด็นท้าทาย</h2>
+            <p style="font-size: 1.2rem; font-weight: 300; margin-top: 10px;">
+                ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
+            </p>
+            
+            <a href="#challenge-details" class="btn-premium">
+                ดูรายละเอียดประเด็นท้าทาย <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- สคริปต์สำหรับ Animation (AOS) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+    </script>
+</body>
+</html>
