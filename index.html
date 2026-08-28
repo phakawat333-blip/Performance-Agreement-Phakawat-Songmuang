@@ -364,6 +364,56 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
+        /* CSS เพิ่มเติมสำหรับส่วนความสำเร็จ (Achievements) */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .achievement-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card:hover {
+            box-shadow: 0 10px 25px rgba(26, 54, 93, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .achievement-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .achievement-content {
+            padding: 25px;
+            flex-grow: 1;
+        }
+
+        .achievement-content h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .achievement-content p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
     </style>
 </head>
 <body>
@@ -380,10 +430,10 @@
         <div class="pro-card profile-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="profile-img-container">
                 <!-- ใช้ Thumbnail API ของ Google Drive เพื่อบังคับแสดงรูป -->
-                <img src="https://drive.google.com/thumbnail?id=1GAIVAa0pxZToSXQJKCkG_seQgiTHxkP3&sz=w600" 
+                <img src="https://drive.google.com/thumbnail?id=1GAIVAa0pxZToSXQJKCkG_seQgiTHxkP3&sz=w600"
                      alt="รูปโปรไฟล์ นายภควัต สองเมือง" 
-                     class="profile-img"
-                     onerror="this.onerror=null; this.src='https://via.placeholder.com/220x220/1A365D/FFFFFF?text=Profile+Image';">
+                    class="profile-img"
+                    onerror="this.onerror=null; this.src='https://via.placeholder.com/220x220/1A365D/FFFFFF?text=Profile+Image';">
             </div>
             <div class="profile-info">
                 <div class="profile-title">ส่วนที่ 1 : ข้อมูลผู้จัดทำข้อตกลง</div>
@@ -530,13 +580,70 @@
         <div class="pro-card challenge-section" data-aos="fade-up">
             <h2>ส่วนที่ 2 : ประเด็นท้าทาย</h2>
             <p style="font-size: 1.2rem; font-weight: 300; margin-top: 10px;">
-                ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
+               ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
             </p>
             
             <!-- แก้ไขลิงก์ไปที่ C.html -->
             <a href="C.html" class="btn-premium">
                 ดูรายละเอียดประเด็นท้าทาย <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
             </a>
+        </div>
+
+        <!-- 1.5 ส่วนความสำเร็จและรางวัล (เพิ่มใหม่) -->
+        <div class="pro-card" data-aos="fade-up">
+            <div class="section-header">
+                <h2><i class="fas fa-award"></i> ผลงานและความสำเร็จที่ภาคภูมิใจ</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="achievement-grid">
+                
+                <!-- ความสำเร็จที่ 1 -->
+                <div class="achievement-card">
+                    <img src="https://drive.google.com/thumbnail?id=1aA9M15C0cGJWIROXM5FB-uVjCw0XN8Ye&sz=w600" alt="GLOBE Student Challenge Award 2025" class="achievement-img">
+                    <div class="achievement-content">
+                        <h4>1. รางวัลดีเด่น (เหรียญทอง) GLOBE Student Challenge Award 2025 โดย สสวท.</h4>
+                        <p>ผลงาน เรื่อง การศึกษาความสัมพันธ์ระหว่างแหล่งเพาะพันธุ์ยุง คุณภาพน้ำ และอุบัติการณ์ของไข้เลือดออก: ในอำเภอกุมภวาปี จังหวัดอุดรธานี</p>
+                    </div>
+                </div>
+
+                <!-- ความสำเร็จที่ 2 -->
+                <div class="achievement-card">
+                    <img src="https://drive.google.com/thumbnail?id=1tduMkDkbf5tAxagPfyGCbsT38UPM-x6N&sz=w600" alt="GLOBE Student Challenge Award 2026" class="achievement-img">
+                    <div class="achievement-content">
+                        <h4>2. รางวัลชมเชย GLOBE Student Challenge Award 2026 โดย สสวท.</h4>
+                        <p>ผลงาน เรื่อง ผลกระทบเชิงซ้อนของเอลนีโญและวัชพืชต่างถิ่นต่อสมบัติทางกายภาพของน้ำในทะเลบัวแดงและแนวทางในการรับมือกับผลกระทบในชุมชน</p>
+                    </div>
+                </div>
+
+                <!-- ความสำเร็จที่ 3 -->
+                <div class="achievement-card">
+                    <img src="https://drive.google.com/thumbnail?id=1qv2OttwBvUR9QjijjzUulhqVLZqKsH9O&sz=w600" alt="การแข่งขันตอบปัญหาทางพฤกษศาสตร์ ครั้งที่ 16" class="achievement-img">
+                    <div class="achievement-content">
+                        <h4>3. ทีมกุมภวาปีผงาด! คว้าอันดับ 23 ของประเทศ</h4>
+                        <p>การแข่งขันตอบปัญหาทางพฤกษศาสตร์ ครั้งที่ 16 (16th Botanical Contest) อันดับที่ 23 ของประเทศจากจำนวนผู้เข้าร่วมการแข่งขันทั้งหมดกว่า 300 ลำดับ</p>
+                    </div>
+                </div>
+
+                <!-- ความสำเร็จที่ 4 -->
+                <div class="achievement-card">
+                    <img src="https://drive.google.com/thumbnail?id=1gdrS5cwdSZdENJEszf9SJJkzfKccfTz-&sz=w600" alt="การแข่งขันตอบปัญหาทางวิทยาศาสตร์และคณิตศาสตร์ ระดับมัธยมศึกษาตอนปลาย" class="achievement-img">
+                    <div class="achievement-content">
+                        <h4>4. ผ่านเกณฑ์คัดเลือก 4 ทีมที่ดีที่สุดของสายเข้าสู่รอบถัดไป</h4>
+                        <p>โรงเรียนกุมภวาปีได้อันดับที่ 3 ของสายที่ 11 ได้ลงแข่งขันต่อในรอบที่ 2 การแข่งขันตอบปัญหาทางวิทยาศาสตร์และคณิตศาสตร์ ระดับมัธยมศึกษาตอนปลาย ในงานสัปดาห์วิทยาศาสตร์แห่งชาติ ส่วนภูมิภาค ประจำปี 2569 ณ คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น</p>
+                    </div>
+                </div>
+
+                <!-- ความสำเร็จที่ 5 -->
+                <div class="achievement-card">
+                    <img src="https://drive.google.com/thumbnail?id=1dvRU9vVRKjqmls9_vwMXzS2lXMA151gV&sz=w600" alt="ครูดี ครูเก่ง สังกัด สพฐ. 2569" class="achievement-img">
+                    <div class="achievement-content">
+                        <h4>5. ได้รับการเสนอชื่อเป็น “ครูดี ครูเก่ง”</h4>
+                        <p>สังกัดคณะกรรมการการศึกษาขั้นพื้นฐาน ประจำปี พ.ศ. 2569</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>
