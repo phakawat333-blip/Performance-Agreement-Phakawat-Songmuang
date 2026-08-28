@@ -398,6 +398,8 @@
         .achievement-content {
             padding: 25px;
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .achievement-content h4 {
@@ -412,6 +414,27 @@
             font-size: 0.95rem;
             color: var(--text-gray);
             line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        /* CSS สำหรับ YouTube Embed แบบ Responsive */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* อัตราส่วน 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: auto; /* ดันให้อยู่ล่างสุดของการ์ด */
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
     </style>
@@ -550,7 +573,6 @@
             <p style="color: var(--text-gray); margin-top: 5px;">คลิกที่เมนูแต่ละด้านเพื่อดูรายละเอียดการปฏิบัติงาน</p>
             
             <div class="menu-grid">
-                <!-- แก้ไขลิงก์ไปที่ D1.html -->
                 <a href="D1.html" class="menu-item" data-aos="zoom-in" data-aos-delay="100">
                     <div class="menu-icon"><i class="fas fa-laptop-file"></i></div>
                     <div class="menu-text">
@@ -558,7 +580,6 @@
                     </div>
                 </a>
                 
-                <!-- แก้ไขลิงก์ไปที่ D2.html -->
                 <a href="D2.html" class="menu-item" data-aos="zoom-in" data-aos-delay="200">
                     <div class="menu-icon"><i class="fas fa-users-gear"></i></div>
                     <div class="menu-text">
@@ -566,7 +587,6 @@
                     </div>
                 </a>
                 
-                <!-- แก้ไขลิงก์ไปที่ D3.html (ตามความเหมาะสมเพื่อไม่ให้ซ้ำกับ D2) -->
                 <a href="D3.html" class="menu-item" data-aos="zoom-in" data-aos-delay="300">
                     <div class="menu-icon"><i class="fas fa-user-graduate"></i></div>
                     <div class="menu-text">
@@ -583,7 +603,6 @@
                ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
             </p>
             
-            <!-- แก้ไขลิงก์ไปที่ C.html -->
             <a href="C.html" class="btn-premium">
                 ดูรายละเอียดประเด็นท้าทาย <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
             </a>
@@ -607,12 +626,16 @@
                     </div>
                 </div>
 
-                <!-- ความสำเร็จที่ 2 -->
+                <!-- ความสำเร็จที่ 2 (เพิ่มวิดีโอ) -->
                 <div class="achievement-card">
                     <img src="https://drive.google.com/thumbnail?id=1tduMkDkbf5tAxagPfyGCbsT38UPM-x6N&sz=w600" alt="GLOBE Student Challenge Award 2026" class="achievement-img">
                     <div class="achievement-content">
                         <h4>2. รางวัลชมเชย GLOBE Student Challenge Award 2026 โดย สสวท.</h4>
                         <p>ผลงาน เรื่อง ผลกระทบเชิงซ้อนของเอลนีโญและวัชพืชต่างถิ่นต่อสมบัติทางกายภาพของน้ำในทะเลบัวแดงและแนวทางในการรับมือกับผลกระทบในชุมชน</p>
+                        <!-- ฝังวิดีโอ YouTube -->
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/yGznvls2azE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
 
