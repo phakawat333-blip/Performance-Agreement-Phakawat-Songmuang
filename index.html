@@ -364,7 +364,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        /* CSS เพิ่มเติมสำหรับส่วนความสำเร็จ (Achievements) */
+        /* CSS สำหรับส่วนความสำเร็จ (Achievements) */
         .achievement-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -393,6 +393,23 @@
             height: 250px;
             object-fit: cover;
             border-bottom: 3px solid var(--accent);
+        }
+
+        /* CSS สำหรับรวมหลายรูปในการ์ดเดียว */
+        .multi-img-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 150px 100px;
+            height: 250px;
+            border-bottom: 3px solid var(--accent);
+        }
+        .multi-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .multi-img-container .img-main {
+            grid-column: 1 / 3;
         }
 
         .achievement-content {
@@ -452,7 +469,6 @@
         <!-- 1.1 ข้อมูลผู้จัดทำ -->
         <div class="pro-card profile-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="profile-img-container">
-                <!-- ใช้ Thumbnail API ของ Google Drive เพื่อบังคับแสดงรูป -->
                 <img src="https://drive.google.com/thumbnail?id=1GAIVAa0pxZToSXQJKCkG_seQgiTHxkP3&sz=w600"
                      alt="รูปโปรไฟล์ นายภควัต สองเมือง" 
                     class="profile-img"
@@ -600,7 +616,7 @@
         <div class="pro-card challenge-section" data-aos="fade-up">
             <h2>ส่วนที่ 2 : ประเด็นท้าทาย</h2>
             <p style="font-size: 1.2rem; font-weight: 300; margin-top: 10px;">
-               ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
+                ข้อตกลงในการพัฒนางานที่เป็นประเด็นท้าทาย<br>ในการพัฒนาผลลัพธ์การเรียนรู้ของผู้เรียน
             </p>
             
             <a href="C.html" class="btn-premium">
@@ -608,7 +624,7 @@
             </a>
         </div>
 
-        <!-- 1.5 ส่วนความสำเร็จและรางวัล (เพิ่มใหม่) -->
+        <!-- 1.5 ส่วนความสำเร็จและรางวัล -->
         <div class="pro-card" data-aos="fade-up">
             <div class="section-header">
                 <h2><i class="fas fa-award"></i> ผลงานและความสำเร็จที่ภาคภูมิใจ</h2>
@@ -626,7 +642,7 @@
                     </div>
                 </div>
 
-                <!-- ความสำเร็จที่ 2 (เพิ่มวิดีโอ) -->
+                <!-- ความสำเร็จที่ 2 -->
                 <div class="achievement-card">
                     <img src="https://drive.google.com/thumbnail?id=1tduMkDkbf5tAxagPfyGCbsT38UPM-x6N&sz=w600" alt="GLOBE Student Challenge Award 2026" class="achievement-img">
                     <div class="achievement-content">
@@ -663,6 +679,24 @@
                     <div class="achievement-content">
                         <h4>5. ได้รับการเสนอชื่อเป็น “ครูดี ครูเก่ง”</h4>
                         <p>สังกัดคณะกรรมการการศึกษาขั้นพื้นฐาน ประจำปี พ.ศ. 2569</p>
+                    </div>
+                </div>
+                
+                <!-- ความสำเร็จที่ 6 (เพิ่มใหม่ตามคำขอ) -->
+                <div class="achievement-card">
+                    <div class="multi-img-container">
+                        <img src="https://drive.google.com/thumbnail?id=1d4x-_u1CrEeRN9uMU585gPzN9YEthzZV&sz=w600" alt="CHANGE INNOVATION AWARDS 2026 รูปที่ 1" class="img-main">
+                        <img src="https://drive.google.com/thumbnail?id=1P3nMImd3Snbny_sifs9pgmoZgnbbBWIi&sz=w600" alt="CHANGE INNOVATION AWARDS 2026 รูปที่ 2">
+                        <img src="https://drive.google.com/thumbnail?id=1vQ3_empthf8NVePrX6qDiz_XNwKzEq6H&sz=w600" alt="CHANGE INNOVATION AWARDS 2026 รูปที่ 3">
+                    </div>
+                    <div class="achievement-content">
+                        <h4>6. รางวัลเหรียญเงิน (Silver Medal) CHANGE INNOVATION AWARDS 2026</h4>
+                        <p style="font-size: 0.9rem;">
+                            <strong>หัวข้อ:</strong> แนวคิดการเกษตร การอนุรักษ์ทรัพยากรธรรมชาติและสิ่งแวดล้อมอย่างยั่งยืน<br>
+                            ทีมโรงเรียนกุมภวาปีคว้าลำดับที่ 14 ด้วยคะแนน 70 คะแนน พร้อมได้รับหนังสือรับรองมาตรฐานนวัตกรรม จากทีมที่เข้าร่วมทั้งหมด 515 ทีม (มีทีมที่ได้รับการจัดอันดับคะแนน 65 ทีม)<br><br>
+                            <strong>นักเรียนผู้เข้าแข่งขัน:</strong> น.ส.ศุภกัญญา ดวงพรดี, น.ส.ยลดา โกนันท์, น.ส.อาทิตยา พิชญเดชาธนากุล, น.ส.ฐิติพร อะวันนา, นายธนชาติ พิเศษ และ นายณัฐวุฒิ สิมมา<br>
+                            <strong>ควบคุมทีมโดย:</strong> นายภควัต สองเมือง (ครูโรงเรียนกุมภวาปี) และ อ.กฤษฎา นามบุญเรือง (สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม คณะวิทยาศาสตร์ มรภ.อุดรธานี)
+                        </p>
                     </div>
                 </div>
 
