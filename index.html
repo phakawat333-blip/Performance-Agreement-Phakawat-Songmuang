@@ -162,7 +162,7 @@
             color: var(--accent);
         }
 
-        /* Section 1.3 Workload (แบ่ง 2 ภาคเรียน) */
+        /* Section 1.3 Workload */
         .section-header {
             text-align: center;
             margin-bottom: 40px;
@@ -435,14 +435,13 @@
             flex-grow: 1;
         }
 
-        /* CSS สำหรับ YouTube Embed แบบ Responsive */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* อัตราส่วน 16:9 */
             height: 0;
             overflow: hidden;
             border-radius: 8px;
-            margin-top: auto; /* ดันให้อยู่ล่างสุดของการ์ด */
+            margin-top: auto;
         }
         
         .video-container iframe {
@@ -454,9 +453,58 @@
             border: none;
         }
 
+        /* CSS สำหรับปุ่มเปิด-ปิดเสียงเพลงพื้นหลัง */
+        .audio-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent-light);
+        }
+
+        .audio-toggle-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary);
+        }
+
+        .audio-toggle-btn.muted {
+            background-color: #718096;
+            border-color: #A0AEC0;
+        }
+
+        /* เพิ่ม Pulse Animation ให้ปุ่มน่าสนใจ */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(246, 224, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(246, 224, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(246, 224, 94, 0); }
+        }
+        .audio-toggle-btn.playing {
+            animation: pulse 2s infinite;
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- ปุ่มเปิดปิดเสียงลอยตัว (Floating Audio Button) -->
+    <div id="audioBtn" class="audio-toggle-btn muted" title="เล่น/หยุดเพลง">
+        <i class="fas fa-volume-mute"></i>
+    </div>
+
+    <!-- กล่องซ่อนสำหรับเล่น YouTube Background Music -->
+    <div id="youtubeAudioPlayer" style="display: none; position: absolute; width: 0; height: 0;"></div>
 
     <header data-aos="fade-down" data-aos-duration="1000">
         <h1>ผลการปฏิบัติงานตามข้อตกลงในการพัฒนางาน (PA)</h1>
@@ -648,7 +696,6 @@
                     <div class="achievement-content">
                         <h4>2. รางวัลชมเชย GLOBE Student Challenge Award 2026 โดย สสวท.</h4>
                         <p>ผลงาน เรื่อง ผลกระทบเชิงซ้อนของเอลนีโญและวัชพืชต่างถิ่นต่อสมบัติทางกายภาพของน้ำในทะเลบัวแดงและแนวทางในการรับมือกับผลกระทบในชุมชน</p>
-                        <!-- ฝังวิดีโอ YouTube -->
                         <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/yGznvls2azE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
@@ -682,7 +729,7 @@
                     </div>
                 </div>
                 
-                <!-- ความสำเร็จที่ 6 (เพิ่มใหม่ตามคำขอ) -->
+                <!-- ความสำเร็จที่ 6 -->
                 <div class="achievement-card">
                     <div class="multi-img-container">
                         <img src="https://drive.google.com/thumbnail?id=1d4x-_u1CrEeRN9uMU585gPzN9YEthzZV&sz=w600" alt="CHANGE INNOVATION AWARDS 2026 รูปที่ 1" class="img-main">
@@ -707,13 +754,83 @@
 
     <!-- สคริปต์สำหรับ Animation (AOS) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
         AOS.init({
             once: true,
             offset: 50,
             duration: 800,
         });
+    </script>
+
+    <!-- สคริปต์สำหรับ YouTube Background Music -->
+    <script>
+        // เรียกใช้ YouTube IFrame Player API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var btn = document.getElementById('audioBtn');
+        var icon = btn.querySelector('i');
+        
+        // รหัสวิดีโอใหม่
+        var videoId = '_DWTntfXPlg'; 
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubeAudioPlayer', {
+                height: '0',
+                width: '0',
+                videoId: videoId,
+                playerVars: {
+                    'autoplay': 1,      // พยายามเล่นอัตโนมัติ
+                    'controls': 0,      // ซ่อนปุ่มควบคุม
+                    'loop': 1,          // วนลูป
+                    'playlist': videoId, // ต้องใส่รหัสวิดีโอซ้ำใน playlist เพื่อให้ loop ทำงานได้สมบูรณ์
+                    'playsinline': 1,
+                    'showinfo': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // สั่งให้เล่นวิดีโอ (เบราว์เซอร์ส่วนใหญ่จะบล็อกเสียงไว้ในตอนแรก)
+            event.target.setVolume(50); // ตั้งความดังเสียง 50%
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            // เปลี่ยนสถานะปุ่มตามสถานะของวิดีโอ
+            if (event.data === YT.PlayerState.PLAYING) {
+                btn.classList.remove('muted');
+                btn.classList.add('playing');
+                icon.className = 'fas fa-volume-up';
+            } else {
+                btn.classList.add('muted');
+                btn.classList.remove('playing');
+                icon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        // จัดการคลิกที่ปุ่มเพื่อเล่นหรือหยุด
+        btn.addEventListener('click', function() {
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        });
+
+        // ดักจับการคลิกครั้งแรกบนหน้าจอ เพื่อบังคับเล่นเพลง (Bypass Autoplay Policy)
+        document.body.addEventListener('click', function() {
+            if (player && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                player.playVideo();
+            }
+        }, { once: true }); // ทำงานแค่ครั้งเดียว
     </script>
 </body>
 </html>
